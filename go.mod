@@ -1,4 +1,4 @@
-module lestgo
+module letsgo
 
 go 1.23.1
 

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"lestgo/ui"
+	"letsgo/ui"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -17,6 +17,8 @@ func (app *application) routes() http.Handler {
 
 	fileServer := http.FileServer(http.FS(ui.Files))
 	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
+
+	router.HandlerFunc(http.MethodGet, "/ping", ping)
 
 	dynamic := alice.New(app.sessionManager.LoadAndSave, noSurf, app.authenticate)
 

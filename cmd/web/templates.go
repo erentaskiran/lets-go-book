@@ -3,8 +3,8 @@ package main
 import (
 	"html/template"
 	"io/fs"
-	"lestgo/internal/models"
-	"lestgo/ui"
+	"letsgo/internal/models"
+	"letsgo/ui"
 	"path/filepath"
 	"time"
 )
@@ -20,7 +20,11 @@ type templateData struct {
 }
 
 func humanDate(t time.Time) string {
-	return t.Format("02 Jan 2006 at 15:04")
+	if t.IsZero() {
+		return ""
+	}
+
+	return t.UTC().Format("02 Jan 2006 at 15:04")
 }
 
 var functions = template.FuncMap{
